@@ -1,0 +1,6 @@
+<a:name xmlns:a="http://www.bear.org/">
+    <a:firstname>
+        <!-- same definition of "a" (no problem) -->
+        <a:nickname xmlns:a="http://www.bear.org/">Uncle Awesome</a:nickname>
+    </a:firstname>
+</a:name>

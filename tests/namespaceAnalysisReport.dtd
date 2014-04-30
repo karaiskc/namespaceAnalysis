@@ -1,0 +1,38 @@
+<!-- namespaceReport is the root element. 
+     Its required attribute gives the overall status of the document.
+     If the value of the "verdict" attribute is "normal", then the namespaceReport
+     element must be EMPTY. Otherwise, namespaceReport must have exactly one details 
+     child element-->
+<!ELEMENT namespaceReport (details?)>
+
+<!-- Two additional constraints:
+        1) each token must be one of (normal | deceptive )
+        2) no token may be repeated 
+     -->
+ <!ATTLIST namespaceReport verdict NMTOKENS #REQUIRED>
+
+<!-- There must be at least one problem for there to be details -->
+<!ELEMENT details (problem+)>
+
+<!-- Each "problem" is a set of conflicting namespace declarations such
+     that every item in the set have the same prefix but distinct
+     namespaces.
+     
+     See deceptiveMultiple-report.xml for an example of how to use multiple problems.
+     -->
+<!ELEMENT problem (declaration, declaration+)>
+
+<!ELEMENT declaration EMPTY>
+<!ATTLIST declaration prefix NMTOKEN #REQUIRED
+                      namespace CDATA #REQUIRED>
+<!-- The path attribute must be an XPath to the node where the
+     problematic declaration appears. The XPath should be of the following 
+     sterotypical form:
+        path := step+
+        step := '/*['digit+']'
+     Thus, if a problem is on the root node, the path would be:
+        /*[1]
+     If it were on the second child of the root, it would be:
+        /*[1]/*[2]
+     All paths begin with "/*[1]".-->
+<!ATTLIST declaration  path CDATA #REQUIRED>

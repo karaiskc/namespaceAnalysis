@@ -1,0 +1,4 @@
+<a:NormalExample xmlns:a="http://sonormal.org/" 
+    xmlns:b="http://stillnormal.org/">
+    <a:AnElement b:anAttribute="text"> </a:AnElement>
+</a:NormalExample>
